@@ -10,14 +10,19 @@ int main()
 {
     char choice = ' ', choiceOption = ' ';
     std::string text = "", key = "", new_text = "", hexString = "";
-    bool exit_program = false;
+
+    bool exit_program = false;  // Flag control program exit
+    
+    // Main loop for the program
     while (!exit_program)
     {
         display_menu();
         choice = get_choice();
+
+        // Process user choice
         switch (choice)
         {
-        case 'A':
+        case 'A':   // Encryption option
             while (true)
             {
                 text = get_text();
@@ -33,12 +38,14 @@ int main()
                 break;
             }
             break;
-        case 'B':
+        case 'B':   // Decryption option
             display_options();
             choiceOption = get_choice();
+
+            // Process user choice
             switch (choiceOption)
             {
-            case 'A':
+            case 'A':   // Hexadecimal decryption
                 new_text.clear();
                 while (true)
                 {
@@ -68,7 +75,7 @@ int main()
                     break;
                 }
                 break;
-            case 'B':
+            case 'B':   // Text decryption
                 new_text.clear();
                 while (true)
                 {
@@ -84,7 +91,7 @@ int main()
                     break;
                 }
                 break;
-            case 'C':
+            case 'C':   
                 std::cout << "Going back to the menu...\n";
                 break;
             default:
@@ -92,7 +99,7 @@ int main()
                 break;
             }
             break;
-        case 'C':
+        case 'C':   // Exit option
             exit_program = true;
             std::cout << "Exiting the program... please wait...\n";
             break;
