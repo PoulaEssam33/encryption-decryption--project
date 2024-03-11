@@ -71,3 +71,41 @@ void print_hex(std::string hex)
     }
     std::cout << std::endl;
 }
+
+std::string get_clear_text(std::string text)
+{
+    std::string clear_text = "";
+    for (size_t j = 0; j < text.length(); j++)
+    {
+        if (isalnum(text[j]))
+        {
+            clear_text += text[j];
+        }
+    }
+    return clear_text;
+}
+
+bool is_hexadecimal(const std::string &text)
+{
+    for (char c : text)
+    {
+        if (!isxdigit(c))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::string decrypt_hex(std::string hex, std::string key)
+{
+    std::string clear_text = "";
+    size_t key_length = key.length();
+    for (size_t i = 0; i < hex.length(); i += 2)
+    {
+        int byte = std::stoi(hex.substr(i, 2), 0, 16);
+        char decrypted_char =  byte ^ key[i / 2 % key_length];
+        clear_text.push_back(decrypted_char);
+    }
+    return clear_text;
+}

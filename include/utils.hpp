@@ -19,4 +19,10 @@ std::string cipher_text(std::string text, std::string key);
 
 void print_hex(std::string hex);
 
+std::string get_clear_text(std::string text);
+
+bool is_hexadecimal(const std::string &text);
+
+std::string decrypt_hex(std::string hex, std::string key);
+
 #endif

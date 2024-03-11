@@ -53,35 +53,15 @@ int main()
                         continue;
                     }
 
-                    for (size_t j = 0; j < text.length(); j++)
-                    {
-                        if (isalnum(text[j]))
-                        {
-                            clear_text += text[j];
-                        }
-                    }
-                    bool is_hexadecimal = true;
-                    for (char c : clear_text)
-                    {
-                        if (!isxdigit(c))
-                        {
-                            is_hexadecimal = false;
-                            break;
-                        }
-                    }
+                    clear_text = get_clear_text(text);
 
-                    if (!is_hexadecimal)
+                    if(!is_hexadecimal(clear_text))
                     {
-                        std::cout << "Please enter input in hexadecimal format" << std::endl;
+                        std::cout << "Invalid hexa input" << std::endl;
                         continue;
                     }
 
-                    for (size_t i = 0; i < clear_text.length(); i += 2)
-                    {
-                        int byte = stoi(clear_text.substr(i, 2), nullptr, 16);
-                        char decrypted_char = byte ^ key[i / 2 % key.length()];
-                        new_text += decrypted_char;
-                    }
+                    new_text = decrypt_hex(clear_text, key);
 
                     std::cout << "Plain text: " << new_text;
                     std::cout << std::endl;
@@ -89,6 +69,7 @@ int main()
                 }
                 break;
             case 'B':
+                new_text.clear();
                 while (true)
                 {
                     text = get_text();
